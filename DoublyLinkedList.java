@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class DoublyLinkedList<E> {
 
     private static class Node<E> {
@@ -114,7 +116,48 @@ public class DoublyLinkedList<E> {
         return sb.toString();
     }
 
-    public void group(){
+    // public void group(){
+    //     Node<E> walk = header.getNext();
+    //     List<E> nullList = new ArrayList<>();
+    //     List<E> objectList = new ArrayList<>();
+
+    //     while(walk != trailer){
+    //         if (walk.getElement() == null) {
+    //             nullList.add(walk.getElement());
+    //         }else{
+    //             objectList.add(walk.getElement());
+    //         }
+
+    //         walk = walk.getNext();
+    //     }
+
+    //     header = new Node<>(null, null, null);
+    //     trailer = new Node<>(null, header, null);
+    //     header.setNext(trailer);
+    //     size = 0;
+
+    //     for (E e : nullList) {
+    //         addLast(e);
+    //     }
+
+    //     for (E e : objectList) {
+    //         addLast(e);
+    //     }
+
+    // }
+
+     public void group(){
+       Node<E> walk = header.getNext();
+
+       while (walk != trailer) {
+        Node<E> next = walk.getNext();
+        if (walk.getElement() == null){
+            remove(walk);
+            addBetween(walk.getElement(), header, header.getNext());
+        }
+
+        walk = next;
+       }
 
     }
 }
